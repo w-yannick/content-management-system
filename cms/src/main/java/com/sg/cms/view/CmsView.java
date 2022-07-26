@@ -16,4 +16,13 @@ public class CmsView {
     public String displayIndexPage(){
         return "index";
     }
+    public String displayAdminPage(){
+        return "admin";
+    }
+    public String displayLoginPage(){
+        return "login";
+    }
+    public String displayLogoutPage(){
+        return "logout";
+    }
 }
