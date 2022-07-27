@@ -10,32 +10,31 @@
 
         <title>Blog</title>
     </head>
-    <body>
+    <body style="height: 97vh" class="m-0 p-0">
         <!-- Main Body of Page -->
-        <div class="container">
-            
-            
-            <form class="form-horizontal" 
+        <div class="container d-flex justify-content-center align-items-center w-50 h-100">
+            <form class="form-horizontal w-100"
                   role="form" 
                   method="post" 
                    th:action="@{/login}">
-                    
-                
+
                 <div class="form-group">
                     <label for="username" class="col-md-4 control-label">Username:</label>
                     <div class="col-md-8">
-                        <input type="text" 
-                               class="form-control" 
-                               name="username" 
+                        <input type="text"
+                               class="form-control"
+                               id="username"
+                               name="username"
                                placeholder="Username"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="password" class="col-md-4 control-label">Password:</label>
                     <div class="col-md-8">
-                        <input type="text" 
-                               class="form-control" 
-                               name="password" 
+                        <input type="password"
+                               class="form-control"
+                               id="password"
+                               name="password"
                                placeholder="Password"/>
                     </div>
                 </div>

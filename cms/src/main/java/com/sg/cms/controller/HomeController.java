@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class HomeController {
     
-        @Autowired
+    @Autowired
     BlogRepository blogRepository;
     
     @Autowired
@@ -30,6 +30,7 @@ public class HomeController {
     public String displayHomePage(Model model) {
 
         List<Blog> blogs = blogRepository.findAll();
+        model.addAttribute("activePage", "home");
         model.addAttribute("blogs", blogs);
         return view.displayIndexPage();
     }
