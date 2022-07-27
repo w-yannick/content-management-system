@@ -14,7 +14,7 @@ Create table BlogBody(
 	Id int primary Key,
     Body mediumtext,
     foreign key (Id)
-		references Blog(Id)
+		references Blog(Id) ON DELETE CASCADE
 );
 
 
@@ -29,11 +29,11 @@ create table Hashtag(
 create table BlogHashtag(
 	BlogId int,
     HashtagId int,
-    PRIMARY KEY  (BlogId, HashtagId),
+    PRIMARY KEY (BlogId, HashtagId),
     foreign key (BlogId)
-		references Blog(Id),
+		references Blog(Id) ON DELETE CASCADE,
 	foreign key (HashtagId)
-		references Hashtag(Id)
+		references Hashtag(Id) ON DELETE CASCADE
 );
 
 INSERT INTO Blog(Title, Description, ExpiryDate) 
