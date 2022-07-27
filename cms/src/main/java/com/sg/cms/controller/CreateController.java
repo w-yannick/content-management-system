@@ -2,13 +2,25 @@
 
 package com.sg.cms.controller;
 
+import com.sg.cms.entity.Blog;
+import com.sg.cms.entity.BlogBody;
+import com.sg.cms.repository.BlogRepository;
+import com.sg.cms.view.CmsView;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class CreateController {
+
+    @Autowired
+    BlogRepository blogRepository;
+
+    @Autowired
+    CmsView view;
     
     @RequestMapping(value="/create", method=RequestMethod.GET)
     public String displayCreatePage(Model model) {
@@ -16,9 +28,15 @@ public class CreateController {
         return "create";
     }
 
-    @RequestMapping(value="/create", method=RequestMethod.POST)
-    public String performCreatePage(String title, String description, String content){
-        System.out.println(content);
+    @PostMapping("createBlog")
+    public String performCreateBlog(String title, String description, String content){
+        Blog blog = new Blog();
+        blog.setTitle(title);
+        blog.setDescription(description);
+        blogRepository.save(blog);
+
+        BlogBody blogBody = new BlogBody();
+        blogBody.setBody(content);
         return "create";
     }
     
