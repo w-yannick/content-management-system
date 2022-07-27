@@ -19,56 +19,58 @@
         <h1>Blog Site</h1>
     </div>
 
-    <div class="card-deck justify-content-evenly gap">
-        <div class="card card-animation" style="width: 300px; flex: 0 1 auto;">
-            <img class="card-img-top" src="https://via.placeholder.com/286x180." alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Blog title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-                <a href="#" class="link"></a>
+    <div class="card-deck justify-content-evenly gap" >
+        <div th:each="blog : ${blogs}">
+            <div class="card card-animation" style="width: 300px; flex: 0 1 auto;">
+                <img class="card-img-top" src="https://via.placeholder.com/286x180." alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${blog.title}">Blog title</h5>
+                    <p class="card-text" th:text="${blog.description}">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <a href="#"  th:href="@{/getBlog(id=${blog.id})}" class="link"></a>
+                </div>
             </div>
         </div>
 
-        <div class="card" style="width: 300px; flex: 0 1 auto;">
-            <img class="card-img-top" src="https://via.placeholder.com/286x180." alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Blog title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-                <a href="#" class="link"></a>
-            </div>
-        </div>
+<!--        <div class="card" style="width: 300px; flex: 0 1 auto;">-->
+<!--            <img class="card-img-top" src="https://via.placeholder.com/286x180." alt="Card image cap">-->
+<!--            <div class="card-body">-->
+<!--                <h5 class="card-title">Blog title</h5>-->
+<!--                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the-->
+<!--                    card's content.</p>-->
+<!--                <a href="#" th:href="@{/2}" class="link"></a>-->
+<!--            </div>-->
+<!--        </div>-->
 
-        <div class="card" style="width: 300px; flex: 0 1 auto;">
-            <img class="card-img-top" src="https://via.placeholder.com/286x180." alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Blog title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-                <a href="#" class="link"></a>
-            </div>
-        </div>
+<!--        <div class="card" style="width: 300px; flex: 0 1 auto;">-->
+<!--            <img class="card-img-top" src="https://via.placeholder.com/286x180." alt="Card image cap">-->
+<!--            <div class="card-body">-->
+<!--                <h5 class="card-title">Blog title</h5>-->
+<!--                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the-->
+<!--                    card's content.</p>-->
+<!--                <a href="#" th:href="@{/3}" class="link"></a>-->
+<!--            </div>-->
+<!--        </div>-->
 
-        <div class="card" style="width: 300px; flex: 0 1 auto;">
-            <img class="card-img-top" src="https://via.placeholder.com/286x180." alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Blog title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-                <a href="#" class="link"></a>
-            </div>
-        </div>
+<!--        <div class="card" style="width: 300px; flex: 0 1 auto;">-->
+<!--            <img class="card-img-top" src="https://via.placeholder.com/286x180." alt="Card image cap">-->
+<!--            <div class="card-body">-->
+<!--                <h5 class="card-title">Blog title</h5>-->
+<!--                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the-->
+<!--                    card's content.</p>-->
+<!--                <a href="#" th:href="@{/4}" class="link"></a>-->
+<!--            </div>-->
+<!--        </div>-->
 
-        <div class="card" style="width: 300px; flex: 0 1 auto;">
-            <img class="card-img-top" src="https://via.placeholder.com/286x180." alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Blog title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-                <a href="#" class="link"></a>
-            </div>
-        </div>
+<!--        <div class="card" style="width: 300px; flex: 0 1 auto;">-->
+<!--            <img class="card-img-top" src="https://via.placeholder.com/286x180." alt="Card image cap">-->
+<!--            <div class="card-body">-->
+<!--                <h5 class="card-title">Blog title</h5>-->
+<!--                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the-->
+<!--                    card's content.</p>-->
+<!--                <a href="#" th:href="@{/blog()}" class="link"></a>-->
+<!--            </div>-->
+<!--        </div>-->
     </div>
 
 
