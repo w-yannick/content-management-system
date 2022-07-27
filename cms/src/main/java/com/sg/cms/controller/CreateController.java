@@ -4,6 +4,7 @@ package com.sg.cms.controller;
 
 import com.sg.cms.entity.Blog;
 import com.sg.cms.entity.BlogBody;
+import com.sg.cms.repository.BlogBodyRepository;
 import com.sg.cms.repository.BlogRepository;
 import com.sg.cms.view.CmsView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class CreateController {
 
     @Autowired
     BlogRepository blogRepository;
+
+    @Autowired
+    BlogBodyRepository blogBodyRepository;
 
     @Autowired
     CmsView view;
@@ -36,7 +40,9 @@ public class CreateController {
         blogRepository.save(blog);
 
         BlogBody blogBody = new BlogBody();
+        blogBody.setId(blog.getId());
         blogBody.setBody(content);
+        blogBodyRepository.save(blogBody);
         return "create";
     }
     
