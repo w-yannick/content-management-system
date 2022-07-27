@@ -38,7 +38,6 @@ public class ContentController {
     @GetMapping("deleteBlog")
     public String deleteBlog(Integer id){
         blogRepository.deleteById(id);
-        blogBodyRepository.deleteById(id);
         return "redirect:/";
     }
 }
