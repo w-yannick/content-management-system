@@ -44,6 +44,15 @@ VALUES
     ("title 4 of the post","description 4","2022-08-02"),
     ("title 5 of the post","description 5","2022-08-02");
     
+INSERT INTO BlogBody(Id, Body) 
+VALUES 
+	(1,"<p>test content</p>"),
+    (2,"<p>test content</p>"),
+    (3,"<p>test content</p>"),
+    (4,"<p>test content</p>"),
+    (5,"<p><Strong>test content</Strong></p>");
+    
+
 INSERT INTO Hashtag(Name) 
 VALUES 
 	("#Food"),
