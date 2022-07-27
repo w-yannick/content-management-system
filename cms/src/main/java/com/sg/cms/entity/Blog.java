@@ -5,12 +5,15 @@
  */
 package com.sg.cms.entity;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -31,7 +34,13 @@ public class Blog {
     
     @Column
     String content;
-
+    
+    @Column
+    LocalDate expiryDate;
+    
+    @ManyToMany(mappedBy = "blogs")
+    private List<Hashtag> hashtags;
+    
     public int getId() {
         return id;
     }
@@ -64,13 +73,31 @@ public class Blog {
         this.content = content;
     }
 
+    public LocalDate getExpiryDate() {
+        return expiryDate;
+    }
+
+    public void setExpiryDate(LocalDate expiryDate) {
+        this.expiryDate = expiryDate;
+    }
+
+    public List<Hashtag> getHashtags() {
+        return hashtags;
+    }
+
+    public void setHashtags(List<Hashtag> hashtags) {
+        this.hashtags = hashtags;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 13 * hash + this.id;
-        hash = 13 * hash + Objects.hashCode(this.title);
-        hash = 13 * hash + Objects.hashCode(this.description);
-        hash = 13 * hash + Objects.hashCode(this.content);
+        int hash = 7;
+        hash = 17 * hash + this.id;
+        hash = 17 * hash + Objects.hashCode(this.title);
+        hash = 17 * hash + Objects.hashCode(this.description);
+        hash = 17 * hash + Objects.hashCode(this.content);
+        hash = 17 * hash + Objects.hashCode(this.expiryDate);
+        hash = 17 * hash + Objects.hashCode(this.hashtags);
         return hash;
     }
 
@@ -98,10 +125,18 @@ public class Blog {
         if (!Objects.equals(this.content, other.content)) {
             return false;
         }
+        if (!Objects.equals(this.expiryDate, other.expiryDate)) {
+            return false;
+        }
+        if (!Objects.equals(this.hashtags, other.hashtags)) {
+            return false;
+        }
         return true;
     }
+
     
     
+
     
     
 }
