@@ -40,13 +40,13 @@ public class HomeController {
         return view.displayIndexPage();
     }
 
-    @GetMapping("getBlog")
-    public String getBlog(Integer id, Model model){
-        Blog blog = blogRepository.getById(id);
-        BlogBody blogBody = blogBodyRepository.getById(id);
-        model.addAttribute("blog", blog);
-        model.addAttribute("blogBody", blogBody);
-        return "blog";
-    }
+//    @GetMapping("getBlog")
+//    public String getBlog(Integer id, Model model){
+//        Blog blog = blogRepository.getById(id);
+//        BlogBody blogBody = blogBodyRepository.getById(id);
+//        model.addAttribute("blog", blog);
+//        model.addAttribute("blogBody", blogBody);
+//        return "blog";
+//    }
 
 }

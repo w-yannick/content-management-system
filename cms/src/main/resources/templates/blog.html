@@ -21,8 +21,11 @@
             <h5 th:text="${blog.description}">Description</h5>
         </div>
 
-        <div id="blog">
+        <div id="blog"></div>
 
+        <div>
+            <a href="#">Edit</a>
+            <a href="#" th:href="@{/deleteBlog(id=${blog.id})}">Delete</a>
         </div>
     </div>
 

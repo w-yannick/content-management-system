@@ -37,13 +37,13 @@ public class CreateController {
         Blog blog = new Blog();
         blog.setTitle(title);
         blog.setDescription(description);
-        blogRepository.save(blog);
+        Blog test = blogRepository.save(blog);
 
         BlogBody blogBody = new BlogBody();
         blogBody.setId(blog.getId());
         blogBody.setBody(content);
         blogBodyRepository.save(blogBody);
-        return "create";
+        return "redirect:/getBlog?id="+test.getId();
     }
     
 }
