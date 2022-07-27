@@ -33,9 +33,6 @@ public class Blog {
     String description;
     
     @Column
-    String content;
-    
-    @Column
     LocalDate expiryDate;
     
     @ManyToMany(mappedBy = "blogs")
@@ -65,13 +62,7 @@ public class Blog {
         this.description = description;
     }
 
-    public String getContent() {
-        return content;
-    }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
 
     public LocalDate getExpiryDate() {
         return expiryDate;
@@ -91,13 +82,12 @@ public class Blog {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 17 * hash + this.id;
-        hash = 17 * hash + Objects.hashCode(this.title);
-        hash = 17 * hash + Objects.hashCode(this.description);
-        hash = 17 * hash + Objects.hashCode(this.content);
-        hash = 17 * hash + Objects.hashCode(this.expiryDate);
-        hash = 17 * hash + Objects.hashCode(this.hashtags);
+        int hash = 5;
+        hash = 43 * hash + this.id;
+        hash = 43 * hash + Objects.hashCode(this.title);
+        hash = 43 * hash + Objects.hashCode(this.description);
+        hash = 43 * hash + Objects.hashCode(this.expiryDate);
+        hash = 43 * hash + Objects.hashCode(this.hashtags);
         return hash;
     }
 
@@ -122,9 +112,6 @@ public class Blog {
         if (!Objects.equals(this.description, other.description)) {
             return false;
         }
-        if (!Objects.equals(this.content, other.content)) {
-            return false;
-        }
         if (!Objects.equals(this.expiryDate, other.expiryDate)) {
             return false;
         }
@@ -134,8 +121,7 @@ public class Blog {
         return true;
     }
 
-    
-    
+
 
     
     
