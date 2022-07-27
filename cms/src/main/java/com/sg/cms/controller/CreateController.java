@@ -15,5 +15,11 @@ public class CreateController {
         model.addAttribute("activePage", "create");
         return "create";
     }
+
+    @RequestMapping(value="/create", method=RequestMethod.POST)
+    public String performCreatePage(String title, String description, String content){
+        System.out.println(content);
+        return "create";
+    }
     
 }

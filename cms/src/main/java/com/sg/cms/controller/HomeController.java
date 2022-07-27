@@ -13,6 +13,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -33,6 +34,13 @@ public class HomeController {
         model.addAttribute("activePage", "home");
         model.addAttribute("blogs", blogs);
         return view.displayIndexPage();
+    }
+
+    @GetMapping("getBlog")
+    public String getBlog(Integer id, Model model){
+        Blog blog = blogRepository.getById(id);
+        model.addAttribute("blog", blog);
+        return "blog";
     }
 
 }
