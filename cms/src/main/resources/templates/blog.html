@@ -43,7 +43,7 @@
 
 <script th:inline="javascript">
     let tag_id = document.getElementById('blog');
-    let content =/*[[${blog.content}]]*/ 'No Content';
+    let content =/*[[${blogBody.body}]]*/ 'No Content';
     tag_id.innerHTML = content;
 </script>
 

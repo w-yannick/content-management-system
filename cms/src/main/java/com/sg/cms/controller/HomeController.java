@@ -7,6 +7,8 @@
 package com.sg.cms.controller;
 
 import com.sg.cms.entity.Blog;
+import com.sg.cms.entity.BlogBody;
+import com.sg.cms.repository.BlogBodyRepository;
 import com.sg.cms.repository.BlogRepository;
 import com.sg.cms.view.CmsView;
 import java.util.List;
@@ -22,10 +24,12 @@ public class HomeController {
     
     @Autowired
     BlogRepository blogRepository;
-    
+
+    @Autowired
+    BlogBodyRepository blogBodyRepository;
+
     @Autowired
     CmsView view;
-    
 
     @RequestMapping(value={"/", "/home", "/index"}, method=RequestMethod.GET)
     public String displayHomePage(Model model) {
@@ -39,7 +43,9 @@ public class HomeController {
     @GetMapping("getBlog")
     public String getBlog(Integer id, Model model){
         Blog blog = blogRepository.getById(id);
+        BlogBody blogBody = blogBodyRepository.getById(id);
         model.addAttribute("blog", blog);
+        model.addAttribute("blogBody", blogBody);
         return "blog";
     }
 
