@@ -40,6 +40,9 @@ public class Blog {
     @Column
     boolean approved;
     
+    @Column
+    boolean approved;
+    
     @ManyToMany
         @JoinTable(name = "BlogHashtag",
             joinColumns = {@JoinColumn(name = "blogId")},
