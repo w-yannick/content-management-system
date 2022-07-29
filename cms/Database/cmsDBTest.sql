@@ -7,7 +7,8 @@ create table Blog(
 	Id int primary key auto_increment,
     Title varchar(50),
     Description VARCHAR(50),
-    ExpiryDate Date
+    ExpiryDate Date,
+    Approved Boolean default false
 );
 
 Create table BlogBody(
@@ -46,13 +47,13 @@ create table Contact(
     Message VARCHAR(255)
 );
 
-INSERT INTO Blog(Title, Description, ExpiryDate) 
+INSERT INTO Blog(Title, Description, ExpiryDate,Approved) 
 VALUES 
-	("title 1 of the post","description 1","2022-07-26"),
-    ("title 2 of the post","description 2","2022-07-29"),
-    ("title 3 of the post","description 3","2022-08-10"),
-    ("title 4 of the post","description 4","2022-08-10"),
-    ("title 5 of the post","description 5","2022-08-10");
+	("title 1 of the post","description 1","2022-07-26",true),
+    ("title 2 of the post","description 2","2022-07-29",true),
+    ("title 3 of the post","description 3","2022-08-10",true),
+    ("title 4 of the post","description 4","2022-08-10",true),
+    ("title 5 of the post","description 5","2022-08-10",false);
     
 INSERT INTO Blog(Title, Description) 
 VALUES 

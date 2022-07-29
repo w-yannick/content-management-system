@@ -8,6 +8,7 @@ import com.sg.cms.repository.BlogBodyRepository;
 import com.sg.cms.repository.BlogRepository;
 import com.sg.cms.view.CmsView;
 import java.time.LocalDate;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,4 +51,11 @@ public class CreateController {
         return "redirect:/getBlog?id="+test.getId();
     }
     
+     @RequestMapping(value="/pendingApproval", method=RequestMethod.GET)
+    public String displayApprovalPage(Model model) {
+        List<Blog> blogs = blogRepository.findByApproved(false);
+        model.addAttribute("activePage", "pendingApproval");
+        model.addAttribute("blogs", blogs);
+        return view.displayPendingApprovalPage();
+    }
 }

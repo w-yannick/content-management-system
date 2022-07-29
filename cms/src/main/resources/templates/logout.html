@@ -10,20 +10,22 @@
 
         <title>Blog</title>
     </head>
-    <body>
+    <body style="height: 97vh" class="m-0 p-0">
         <!-- Main Body of Page -->
-        <div class="container">
-            
-            
-            <form class="form-horizontal" 
+        <!-- Main Body of Page -->
+        <div th:replace="~{fragments/header :: header}"></div>
+        
+        
+        <div class="h-100 d-flex align-items-center justify-content-center text-center">
+                <form class="form-horizontal col-12"
                   role="form" 
                   method="post" 
                    th:action="@{/logout}">
                     
                 
-                Confirm Logout?
+                    <h1>Confirm Logout?</h1>
                 <div class="form-group">
-                    <div class="col-md-offset-4 col-md-8">
+                    <div class="col">
                         <input type="submit" 
                                class="btn btn-default" 
                                id="confirm-button" 
@@ -32,6 +34,7 @@
                 </div>
 
             </form>   
+            
         </div>
         <!-- End main body -->
 
@@ -43,4 +46,4 @@
   
        
     </body>
-</html>;
+</html>
