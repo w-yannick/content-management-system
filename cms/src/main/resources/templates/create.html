@@ -25,7 +25,7 @@
         </div>
     </div>
 
-    <form action="createBlog" method="post">
+    <form action="createBlog" method="post" enctype="multipart/form-data">
         <div class="form-group row">
             <label for="title" class="col-3 col-form-label">
                 Title</label>
@@ -59,6 +59,9 @@
             </div>
         </div>
         <textarea class="mytextarea" id="content" name="content"></textarea>
+        <div>    
+            Add a thumbnail <input id="file" type="file" name="file" accept=".jpg,.jpeg, .png">
+        </div>
         <button type="submit" class="btn btn-primary mt-4">Create Blog</button>
     </form>
 
@@ -82,4 +85,4 @@
 <input type="hidden" id="role" name="role" th:value="${role}"/>
 <script type="text/javascript" th:src="@{/js/addNavbarItems.js}"></script>
 </body>
-</html>;
+</html>
