@@ -84,4 +84,11 @@ public class CreateController {
         return hashTags;
     }
     
+     @RequestMapping(value="/pendingApproval", method=RequestMethod.GET)
+    public String displayApprovalPage(Model model) {
+        List<Blog> blogs = blogRepository.findByApproved(false);
+        model.addAttribute("activePage", "pendingApproval");
+        model.addAttribute("blogs", blogs);
+        return view.displayPendingApprovalPage();
+    }
 }

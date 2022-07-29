@@ -37,6 +37,9 @@ public class Blog {
     @Column
     LocalDate expiryDate;
     
+    @Column
+    boolean approved;
+    
     @ManyToMany
         @JoinTable(name = "BlogHashtag",
             joinColumns = {@JoinColumn(name = "blogId")},
@@ -77,6 +80,16 @@ public class Blog {
         this.expiryDate = expiryDate;
     }
 
+    public boolean isApproved() {
+        return approved;
+    }
+
+    public void setApproved(boolean Approved) {
+        this.approved = Approved;
+    }
+    
+    
+
     public List<Hashtag> getHashtags() {
         return hashtags;
     }
@@ -87,12 +100,13 @@ public class Blog {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 43 * hash + this.id;
-        hash = 43 * hash + Objects.hashCode(this.title);
-        hash = 43 * hash + Objects.hashCode(this.description);
-        hash = 43 * hash + Objects.hashCode(this.expiryDate);
-        hash = 43 * hash + Objects.hashCode(this.hashtags);
+        int hash = 7;
+        hash = 37 * hash + this.id;
+        hash = 37 * hash + Objects.hashCode(this.title);
+        hash = 37 * hash + Objects.hashCode(this.description);
+        hash = 37 * hash + Objects.hashCode(this.expiryDate);
+        hash = 37 * hash + (this.approved ? 1 : 0);
+        hash = 37 * hash + Objects.hashCode(this.hashtags);
         return hash;
     }
 
@@ -111,6 +125,9 @@ public class Blog {
         if (this.id != other.id) {
             return false;
         }
+        if (this.approved != other.approved) {
+            return false;
+        }
         if (!Objects.equals(this.title, other.title)) {
             return false;
         }
@@ -126,8 +143,7 @@ public class Blog {
         return true;
     }
 
-
-
+    
     
     
 }
