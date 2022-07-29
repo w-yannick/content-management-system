@@ -13,7 +13,7 @@
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
 
-    <title>Blog</title>
+    <title>Contact Us</title>
 </head>
 <body>
 <!-- Main Body of Page -->
@@ -21,44 +21,18 @@
 <div class="container">
     <div class="row mt-4 mb-4">
         <div class="col text-center">
-            <h1>Create Blog</h1>
+            <h1>Thank you for contacting us, we will get back to you as soon as we can!</h1>
+            <p>redirecting ...</p>
         </div>
     </div>
 
-    <form action="createBlog" method="post">
-        <div class="form-group row">
-            <label for="title" class="col-3 col-form-label">
-                Title</label>
-            <div class="col-9">
-                <input type="text" name="title"
-                       id="title" class="form-control" required/>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="description" class="col-3 col-form-label">
-                Description</label>
-            <div class="col-9">
-                <input type="text" name="description"
-                       id="description" class="form-control"/>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="expiryDate" class="col-3 col-form-label">
-                Expiry Date</label>
-            <div class="col-9">
-                <input type="date" name="expiryDate"
-                       id="expiryDate" class="form-control"/>
-            </div>
-        </div>
-        <textarea class="mytextarea" id="content" name="content"></textarea>
-        <button type="submit" class="btn btn-primary mt-4">Create Blog</button>
-    </form>
+   
 
 </div>
 <!-- End main body -->
 
 <!-- Optional JavaScript -->
-<script type="text/javascript" th:src="@{/js/tiny-mce.js}"></script>
+
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -71,6 +45,6 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
 
-
+<script type="text/javascript" th:src="@{/js/redirectHome.js}"></script>
 </body>
 </html>;

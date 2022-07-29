@@ -28,6 +28,13 @@ public class BlogBody {
     
     @Column
     String body;
+
+    public BlogBody() {
+    }
+
+    public BlogBody(String body) {
+        this.body = body;
+    }
     
     
     

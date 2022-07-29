@@ -36,6 +36,16 @@ create table BlogHashtag(
 		references Hashtag(Id) ON DELETE CASCADE
 );
 
+-- Hashtag
+create table Contact(
+	Id int primary key auto_increment,
+    FirstName varchar(50),
+    LastName varchar(50),
+    Phone varchar(50),
+    Email varchar(50),
+    Message VARCHAR(255)
+);
+
 INSERT INTO Blog(Title, Description, ExpiryDate) 
 VALUES 
 	("title 1 of the post","description 1","2022-07-26"),
@@ -44,13 +54,20 @@ VALUES
     ("title 4 of the post","description 4","2022-08-10"),
     ("title 5 of the post","description 5","2022-08-10");
     
+INSERT INTO Blog(Title, Description) 
+VALUES 
+	("title 6 of the post","description 6"),
+    ("title 7 of the post","description 7");
+    
 INSERT INTO BlogBody(Id, Body) 
 VALUES 
-	(1,"<p>test content</p>"),
-    (2,"<p>test content</p>"),
-    (3,"<p>test content</p>"),
-    (4,"<p>test content</p>"),
-    (5,"<p><Strong>test content</Strong></p>");
+	(1,"<p>test content 1</p>"),
+    (2,"<p>test content 2</p>"),
+    (3,"<p>test content 3</p>"),
+    (4,"<p>test content 4</p>"),
+    (5,"<p><Strong>test content 5</Strong></p>"),
+    (6,"<p>test content 6</p>"),
+    (7,"<p>test content 7</p>");
     
 
 INSERT INTO Hashtag(Name) 
