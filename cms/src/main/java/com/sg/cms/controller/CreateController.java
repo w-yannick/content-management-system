@@ -7,6 +7,7 @@ import com.sg.cms.entity.BlogBody;
 import com.sg.cms.entity.Hashtag;
 import com.sg.cms.repository.BlogBodyRepository;
 import com.sg.cms.repository.BlogRepository;
+import com.sg.cms.repository.HashtagRepository;
 import com.sg.cms.view.CmsView;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -26,6 +27,9 @@ public class CreateController {
 
     @Autowired
     BlogRepository blogRepository;
+    
+    @Autowired
+    HashtagRepository hashtagRepository;
 
     @Autowired
     BlogBodyRepository blogBodyRepository;
@@ -44,11 +48,23 @@ public class CreateController {
         Blog blog = new Blog();
         blog.setTitle(title);
         blog.setDescription(description);
-
-        Blog test = blogRepository.save(blog);
-
         //Parse hashtags
         List<String> parsedHashTags = parseHashtags(hashTags);
+        List<Hashtag> hashtagList = new ArrayList<>();
+        
+        for(String ht : parsedHashTags){
+            Hashtag hashtag = new Hashtag(); 
+            hashtag.setName(ht);
+            Hashtag fromDB = hashtagRepository.findByName(ht);
+            if(fromDB == null){
+                fromDB = hashtagRepository.save(hashtag);
+            }
+            hashtagList.add(fromDB);
+        }
+        blog.setHashtags(hashtagList);
+        
+        Blog test = blogRepository.save(blog);
+
 
         BlogBody blogBody = new BlogBody();
         blogBody.setId(blog.getId());

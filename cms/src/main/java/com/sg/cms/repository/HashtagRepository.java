@@ -7,6 +7,7 @@ package com.sg.cms.repository;
 
 import com.sg.cms.entity.Blog;
 import com.sg.cms.entity.Hashtag;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -18,5 +19,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface HashtagRepository extends JpaRepository<Hashtag, Integer> {
+    Hashtag findByName(String name);
         
 }

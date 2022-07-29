@@ -33,13 +33,12 @@ public class Hashtag {
     String name;
     
     @JsonIgnore
-    @ManyToMany
-    @JoinTable(name = "BlogHashtag",
-            joinColumns = {@JoinColumn(name = "HashtagId")},
-            inverseJoinColumns = {@JoinColumn(name = "BlogId")})
+    @ManyToMany(mappedBy = "hashtags")
+//    @JoinTable(name = "BlogHashtag",
+//            joinColumns = {@JoinColumn(name = "HashtagId")},
+//            inverseJoinColumns = {@JoinColumn(name = "BlogId")})
     List<Blog> blogs;
 
-    public Hashtag(){}
 
     public int getId() {
         return id;
