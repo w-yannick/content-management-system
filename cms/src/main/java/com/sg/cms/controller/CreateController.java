@@ -7,6 +7,7 @@ import com.sg.cms.entity.BlogBody;
 import com.sg.cms.repository.BlogBodyRepository;
 import com.sg.cms.repository.BlogRepository;
 import com.sg.cms.view.CmsView;
+import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,10 +34,11 @@ public class CreateController {
     }
 
     @PostMapping("createBlog")
-    public String performCreateBlog(String title, String description, String content){
+    public String performCreateBlog(String title, String description,String expiryDate, String content){
         Blog blog = new Blog();
         blog.setTitle(title);
         blog.setDescription(description);
+        blog.setExpiryDate(LocalDate.parse(expiryDate));
         Blog test = blogRepository.save(blog);
 
         BlogBody blogBody = new BlogBody();

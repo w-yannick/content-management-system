@@ -11,6 +11,7 @@ import com.sg.cms.entity.BlogBody;
 import com.sg.cms.repository.BlogBodyRepository;
 import com.sg.cms.repository.BlogRepository;
 import com.sg.cms.view.CmsView;
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,8 +34,8 @@ public class HomeController {
 
     @RequestMapping(value={"/", "/home", "/index"}, method=RequestMethod.GET)
     public String displayHomePage(Model model) {
-
-        List<Blog> blogs = blogRepository.findAll();
+        
+        List<Blog> blogs = blogRepository.findNonExpired(LocalDate.now());
         model.addAttribute("activePage", "home");
         model.addAttribute("blogs", blogs);
         return view.displayIndexPage();
