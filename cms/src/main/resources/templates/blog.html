@@ -20,8 +20,10 @@
             <h1 th:text="${blog.title}">Title</h1>
             <h5 th:text="${blog.description}">Description</h5>
         </div>
-        <div>
-            <img class="card-img-top" th:src="${'/images/blog-' + blog.id }"  style="border-radius: 5%;" onerror="this.src='/images/placeholder.jpg';" alt="Card image cap">
+        <div class="card-deck justify-content-center gap">
+            <img class="card-img-top" th:src="${'/images/blog-' + blog.id }"  
+                 style="border-radius: 10px; max-width: 1080px;max-height: 500px;height:auto;width:auto;" 
+                 onerror="this.src='/images/placeholder.jpg';" alt="Card image cap">
         </div>
         <div id="blog" style ="margin-top: 3em;"></div>
 

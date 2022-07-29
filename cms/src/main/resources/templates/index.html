@@ -19,7 +19,7 @@
         <h1>Blog Site</h1>
     </div>
 
-    <div class="card-deck justify-content-evenly gap" >
+    <div class="card-deck justify-content-center gap" >
         <div th:each="blog : ${blogs}">
             <div class="card card-animation" style="width: 900px; height:500; flex: 0 1 auto;">
                 <img class="card-img-top" th:src="${'/images/blog-' + blog.id }"  onerror="this.src='/images/placeholder.jpg';" alt="Card image cap">
