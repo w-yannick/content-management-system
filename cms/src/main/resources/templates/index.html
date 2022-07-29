@@ -28,7 +28,7 @@
                     <p class="card-text" th:text="${blog.description}">Some quick example text to build on the card title and make up the bulk of the
                         card's content.</p>
                     <a href="#"  th:href="@{/getBlog(id=${blog.id})}" class="link"></a>
-                    <span class="hashtag" th:each="hashtag: ${blog.hashtags}" th:text="'#' + 'hashtag' + ' '"></span>
+                    <span class="hashtag" th:each="hashtag: ${blog.hashtags}" th:text="${hashtag.name} + ' '"></span>
                 </div>
             </div>
         </div>
