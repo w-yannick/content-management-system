@@ -4,10 +4,16 @@ package com.sg.cms.controller;
 
 import com.sg.cms.entity.Blog;
 import com.sg.cms.entity.BlogBody;
+import com.sg.cms.entity.Hashtag;
 import com.sg.cms.repository.BlogBodyRepository;
 import com.sg.cms.repository.BlogRepository;
 import com.sg.cms.view.CmsView;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,20 +40,32 @@ public class CreateController {
     }
 
     @PostMapping("createBlog")
-    public String performCreateBlog(String title, String description,String expiryDate, String content){
+    public String performCreateBlog(String title, String description,String expiryDate, String hashTags, String content){
         Blog blog = new Blog();
         blog.setTitle(title);
         blog.setDescription(description);
-        if(expiryDate != ""){
-            blog.setExpiryDate(LocalDate.parse(expiryDate));
-        }
+
         Blog test = blogRepository.save(blog);
+
+        //Parse hashtags
+        List<String> parsedHashTags = parseHashtags(hashTags);
 
         BlogBody blogBody = new BlogBody();
         blogBody.setId(blog.getId());
         blogBody.setBody(content);
         blogBodyRepository.save(blogBody);
         return "redirect:/getBlog?id="+test.getId();
+    }
+
+    public List<String> parseHashtags(String strHashTags){
+        List<String> hashTags = new ArrayList<>();
+
+        Matcher matcher = Pattern.compile("(#[^#\\s]*)")
+                .matcher(strHashTags);
+        while (matcher.find()) {
+            hashTags.add(matcher.group());
+        }
+        return hashTags;
     }
     
 }

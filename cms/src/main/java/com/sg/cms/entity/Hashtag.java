@@ -39,6 +39,8 @@ public class Hashtag {
             inverseJoinColumns = {@JoinColumn(name = "BlogId")})
     List<Blog> blogs;
 
+    public Hashtag(){}
+
     public int getId() {
         return id;
     }
