@@ -15,6 +15,7 @@ import com.sg.cms.repository.ContactRepository;
 import com.sg.cms.view.CmsView;
 import java.time.LocalDate;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,15 +40,17 @@ public class ContactController {
     CmsView view;
 
     @GetMapping("/contact")
-    public String displayContactPage(Model model){
+    public String displayContactPage(HttpServletRequest request, Model model){
         model.addAttribute("activePage", "contact");
+        HomeController.assignRole(request, model);
         return view.displayContactPage();
     }
 
     
     @PostMapping("/contact")
-    public String saveMessage(Contact contact){
+    public String saveMessage(Contact contact, HttpServletRequest request, Model model){
         contactRepository.save(contact);
+        HomeController.assignRole(request, model);
         return view.displayConfirmContactPage();
     }
 }

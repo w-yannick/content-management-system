@@ -44,7 +44,27 @@ public class HomeController {
         
         List<Blog> blogs = blogRepository.findNonExpired(LocalDate.now(), true);
         
-        String role;
+//        String role;
+//        if (request.isUserInRole("ADMIN")) {
+//            role = "ADMIN";
+//        }
+//        else if (request.isUserInRole("MANAGER")){
+//            role = "MANAGER";
+//        }
+//        else{
+//            role = "USER";
+//        }
+        assignRole(request, model);
+        model.addAttribute("activePage", "home");
+        model.addAttribute("blogs", blogs);
+//        model.addAttribute("role", role);
+
+        return view.displayIndexPage();
+    }
+    
+    
+    public static void assignRole(HttpServletRequest request, Model model ){
+       String role;
         if (request.isUserInRole("ADMIN")) {
             role = "ADMIN";
         }
@@ -54,11 +74,7 @@ public class HomeController {
         else{
             role = "USER";
         }
-        model.addAttribute("activePage", "home");
-        model.addAttribute("blogs", blogs);
+        
         model.addAttribute("role", role);
-
-        return view.displayIndexPage();
-    }
-
+   }
 }

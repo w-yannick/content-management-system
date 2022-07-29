@@ -5,7 +5,9 @@
  */
 package com.sg.cms.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -13,11 +15,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LoginController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String showLoginForm() {
+    public String showLoginForm(HttpServletRequest request, Model model) {
+        HomeController.assignRole(request, model);
         return "login";
     }
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String showLogoutConfirmationForm() {
+    public String showLogoutConfirmationForm(HttpServletRequest request, Model model) {
+        HomeController.assignRole(request, model);
         return "logout";
     }
 }
