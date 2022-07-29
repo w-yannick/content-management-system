@@ -21,9 +21,9 @@
             <h5 th:text="${blog.description}">Description</h5>
         </div>
         <div>
-            <img class="card-img-top" th:src="${'/images/blog-' + blog.id }"  onerror="this.src='/images/placeholder.jpg';" alt="Card image cap">
+            <img class="card-img-top" th:src="${'/images/blog-' + blog.id }"  style="border-radius: 5%;" onerror="this.src='/images/placeholder.jpg';" alt="Card image cap">
         </div>
-        <div id="blog"></div>
+        <div id="blog" style ="margin-top: 3em;"></div>
 
         <div>
 <!--            <a href="#" th:href="@{/deleteBlog(id=${blog.id})}">Delete</a>-->

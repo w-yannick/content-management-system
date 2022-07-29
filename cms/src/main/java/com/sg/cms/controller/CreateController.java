@@ -150,7 +150,7 @@ public class CreateController {
         
         blog.setTitle(title);
         blog.setDescription(description);
-        if(expiryDate != ""){
+        if(!expiryDate.equals("")){
             blog.setExpiryDate(LocalDate.parse(expiryDate));
         }
         else{
@@ -164,7 +164,14 @@ public class CreateController {
         blogRepository.save(blog);
         blogBodyRepository.save(blogBody);
         
-        
+        try{
+           Part image = request.getPart("file"); // Retrieves <input type="file" name="file">
+           String fileName = image.getSubmittedFileName();
+           if(!fileName.equals("")){
+                saveImage(image, fileName, blog.getId());
+           }
+       }catch(IOException | ServletException e){
+       }
         return "redirect:/pendingApproval";
     }
     

@@ -44,20 +44,9 @@ public class HomeController {
         
         List<Blog> blogs = blogRepository.findNonExpired(LocalDate.now(), true);
         
-//        String role;
-//        if (request.isUserInRole("ADMIN")) {
-//            role = "ADMIN";
-//        }
-//        else if (request.isUserInRole("MANAGER")){
-//            role = "MANAGER";
-//        }
-//        else{
-//            role = "USER";
-//        }
         assignRole(request, model);
         model.addAttribute("activePage", "home");
         model.addAttribute("blogs", blogs);
-//        model.addAttribute("role", role);
 
         return view.displayIndexPage();
     }
