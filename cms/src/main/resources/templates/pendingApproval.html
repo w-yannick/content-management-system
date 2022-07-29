@@ -16,18 +16,40 @@
 <div th:replace="~{fragments/header :: header}"></div>
 <div class="container">
     <div class="text-center m-4">
-        <h1>Blog Site</h1>
+        <h1>Blogs</h1>
     </div>
-
+    
     <div class="card-deck justify-content-evenly gap" >
-        <div th:each="blog : ${blogs}">
+        <div class="col-12">
+            <h2>Pending Approval</h2><br/>
+        </div>
+        <div th:each="blog : ${nonApprovedBlogs}">
             <div class="card card-animation" style="width: 300px; flex: 0 1 auto;">
                 <img class="card-img-top" src="https://via.placeholder.com/286x180." alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title" th:text="${blog.title}">Blog title</h5>
                     <p class="card-text" th:text="${blog.description}">Some quick example text to build on the card title and make up the bulk of the
                         card's content.</p>
-                    <a href="#"  th:href="@{/getBlog(id=${blog.id})}" class="link"></a>
+                    <a href="#"  th:href="@{/adminEditBlog(id=${blog.id})}" class="link"></a>
+                    <span class="hashtag" th:each="hashtag: ${blog.hashtags}" th:text="${hashtag.name} + ' '"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <div class="card-deck justify-content-evenly gap" >
+        <div class="col-12">
+            <h2>Published</h2><br/>
+        </div>
+        <div th:each="blog : ${approvedBlogs}">
+            <div class="card card-animation" style="width: 300px; flex: 0 1 auto;">
+                <img class="card-img-top" src="https://via.placeholder.com/286x180." alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${blog.title}">Blog title</h5>
+                    <p class="card-text" th:text="${blog.description}">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <a href="#"  th:href="@{/adminEditBlog(id=${blog.id})}" class="link"></a>
+                    <span class="hashtag" th:each="hashtag: ${blog.hashtags}" th:text="${hashtag.name} + ' '"></span>
                 </div>
             </div>
         </div>

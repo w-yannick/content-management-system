@@ -40,6 +40,6 @@ public class ContentController {
     @GetMapping("deleteBlog")
     public String deleteBlog(Integer id){
         blogRepository.deleteById(id);
-        return "redirect:/";
+        return "redirect:/pendingApproval";
     }
 }

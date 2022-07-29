@@ -10,6 +10,7 @@ import com.sg.cms.repository.BlogRepository;
 import com.sg.cms.repository.HashtagRepository;
 import com.sg.cms.view.CmsView;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -50,6 +51,10 @@ public class CreateController {
         Blog blog = new Blog();
         blog.setTitle(title);
         blog.setDescription(description);
+        if(expiryDate != ""){
+            
+            blog.setExpiryDate(LocalDate.parse(expiryDate));
+        }
         //Parse hashtags
         List<String> parsedHashTags = parseHashtags(hashTags);
         List<Hashtag> hashtagList = new ArrayList<>();
@@ -86,12 +91,67 @@ public class CreateController {
         return hashTags;
     }
     
-     @RequestMapping(value="/pendingApproval", method=RequestMethod.GET)
+    @RequestMapping(value="/pendingApproval", method=RequestMethod.GET)
     public String displayApprovalPage(HttpServletRequest request, Model model) {
-        List<Blog> blogs = blogRepository.findByApproved(false);
+        List<Blog> nonApprovedBlogs = blogRepository.findByApproved(false);
+        List<Blog> ApprovedBlogs = blogRepository.findByApproved(true);
         model.addAttribute("activePage", "pendingApproval");
-        model.addAttribute("blogs", blogs);
+        model.addAttribute("nonApprovedBlogs", nonApprovedBlogs);
+        model.addAttribute("approvedBlogs", ApprovedBlogs);
         HomeController.assignRole(request, model);
         return view.displayPendingApprovalPage();
+    }
+    
+    @RequestMapping(value="/adminEditBlog", method=RequestMethod.GET)
+    public String displayAdminEditPage(Integer id, HttpServletRequest request, Model model) {
+        Blog blog = blogRepository.getById(id);
+        BlogBody blogBody = blogBodyRepository.findById(id).orElse(new BlogBody(""));
+        String hashtags = "";
+        for (Hashtag ht: blog.getHashtags()){
+            hashtags += ht.getName() + ' ';
+        }
+        model.addAttribute("blog", blog);
+        model.addAttribute("hashtags", hashtags);
+        model.addAttribute("blogBody", blogBody);
+        HomeController.assignRole(request, model);
+        return "adminEditBlog";
+    }
+    
+    @RequestMapping(value="/adminEditBlog", method=RequestMethod.POST)
+    public String performAdminEditPage(Integer id, String title, String description,String expiryDate, String hashTags, String content, boolean approved ,HttpServletRequest request, Model model) {
+        Blog blog = blogRepository.getById(id);
+        BlogBody blogBody = blogBodyRepository.findById(id).orElse(new BlogBody(""));
+
+        List<String> parsedHashTags = parseHashtags(hashTags);
+        List<Hashtag> hashtagList = new ArrayList<>();
+        
+        for(String ht : parsedHashTags){
+            Hashtag hashtag = new Hashtag(); 
+            hashtag.setName(ht);
+            Hashtag fromDB = hashtagRepository.findByName(ht);
+            if(fromDB == null){
+                fromDB = hashtagRepository.save(hashtag);
+            }
+            hashtagList.add(fromDB);
+        }
+        
+        blog.setTitle(title);
+        blog.setDescription(description);
+        if(expiryDate != ""){
+            blog.setExpiryDate(LocalDate.parse(expiryDate));
+        }
+        else{
+            blog.setExpiryDate(null);
+        }
+        
+        blog.setApproved(approved);
+        blog.setHashtags(hashtagList);
+        blogBody.setBody(content);
+        
+        blogRepository.save(blog);
+        blogBodyRepository.save(blogBody);
+        
+        
+        return "redirect:/pendingApproval";
     }
 }
