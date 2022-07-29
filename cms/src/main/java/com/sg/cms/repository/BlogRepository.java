@@ -22,6 +22,7 @@ import org.springframework.stereotype.Repository;
 public interface BlogRepository extends JpaRepository<Blog, Integer> {
         @Query(value = "SELECT * " +
             "FROM Blog " +
-            "WHERE ExpiryDate >= ? ", nativeQuery = true)
+            "WHERE ExpiryDate >= ? " + 
+            "OR ExpiryDate is null ", nativeQuery = true)
     List<Blog> findNonExpired(LocalDate localDate);
 }

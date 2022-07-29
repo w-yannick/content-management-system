@@ -25,4 +25,17 @@ public class CmsView {
     public String displayLogoutPage(){
         return "logout";
     }
+    public String displayBlogPage(){
+        return "blog";
+    }
+    public String displayCreatePage(){
+        return "create";
+    }
+    public String displayContactPage(){
+        return "contact";
+    }
+    public String displayConfirmContactPage(){
+        return "confirmContact";
+    }
+    
 }

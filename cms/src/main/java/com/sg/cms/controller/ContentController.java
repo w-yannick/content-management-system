@@ -29,10 +29,10 @@ public class ContentController {
     @GetMapping("getBlog")
     public String getBlogPage(Integer id, Model model){
         Blog blog = blogRepository.getById(id);
-        BlogBody blogBody = blogBodyRepository.getById(id);
+        BlogBody blogBody = blogBodyRepository.findById(id).orElse(new BlogBody(""));
         model.addAttribute("blog", blog);
         model.addAttribute("blogBody", blogBody);
-        return "blog";
+        return view.displayBlogPage();
     }
 
     @GetMapping("deleteBlog")

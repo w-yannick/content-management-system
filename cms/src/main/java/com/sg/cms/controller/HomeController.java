@@ -8,8 +8,10 @@ package com.sg.cms.controller;
 
 import com.sg.cms.entity.Blog;
 import com.sg.cms.entity.BlogBody;
+import com.sg.cms.entity.Contact;
 import com.sg.cms.repository.BlogBodyRepository;
 import com.sg.cms.repository.BlogRepository;
+import com.sg.cms.repository.ContactRepository;
 import com.sg.cms.view.CmsView;
 import java.time.LocalDate;
 import java.util.List;
@@ -17,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -30,6 +33,9 @@ public class HomeController {
     BlogBodyRepository blogBodyRepository;
 
     @Autowired
+    ContactRepository contactRepository;
+
+    @Autowired
     CmsView view;
 
     @RequestMapping(value={"/", "/home", "/index"}, method=RequestMethod.GET)
@@ -40,14 +46,5 @@ public class HomeController {
         model.addAttribute("blogs", blogs);
         return view.displayIndexPage();
     }
-
-//    @GetMapping("getBlog")
-//    public String getBlog(Integer id, Model model){
-//        Blog blog = blogRepository.getById(id);
-//        BlogBody blogBody = blogBodyRepository.getById(id);
-//        model.addAttribute("blog", blog);
-//        model.addAttribute("blogBody", blogBody);
-//        return "blog";
-//    }
 
 }
