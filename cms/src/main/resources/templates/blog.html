@@ -49,6 +49,7 @@
     let content =/*[[${blogBody.body}]]*/ 'No Content';
     tag_id.innerHTML = content;
 </script>
-
+<input type="hidden" id="role" name="role" th:value="${role}"/>
+<script type="text/javascript" th:src="@{/js/addNavbarItems.js}"></script>
 </body>
 </html>;
