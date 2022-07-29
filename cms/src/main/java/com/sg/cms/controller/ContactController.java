@@ -40,7 +40,7 @@ public class ContactController {
 
     @GetMapping("/contact")
     public String displayContactPage(Model model){
-        model.addAttribute("activePage", "create");
+        model.addAttribute("activePage", "contact");
         return view.displayContactPage();
     }
 
