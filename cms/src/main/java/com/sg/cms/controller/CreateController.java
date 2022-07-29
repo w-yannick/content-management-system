@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,8 +39,9 @@ public class CreateController {
     CmsView view;
     
     @RequestMapping(value="/create", method=RequestMethod.GET)
-    public String displayCreatePage(Model model) {
+    public String displayCreatePage(HttpServletRequest request, Model model) {
         model.addAttribute("activePage", "create");
+        HomeController.assignRole(request, model);
         return view.displayCreatePage();
     }
 
@@ -84,4 +86,12 @@ public class CreateController {
         return hashTags;
     }
     
+     @RequestMapping(value="/pendingApproval", method=RequestMethod.GET)
+    public String displayApprovalPage(HttpServletRequest request, Model model) {
+        List<Blog> blogs = blogRepository.findByApproved(false);
+        model.addAttribute("activePage", "pendingApproval");
+        model.addAttribute("blogs", blogs);
+        HomeController.assignRole(request, model);
+        return view.displayPendingApprovalPage();
+    }
 }
