@@ -3,9 +3,12 @@ package com.sg.cms.controller;
 
 import com.sg.cms.entity.Blog;
 import com.sg.cms.entity.BlogBody;
+import com.sg.cms.entity.StaticPage;
 import com.sg.cms.repository.BlogBodyRepository;
 import com.sg.cms.repository.BlogRepository;
+import com.sg.cms.repository.StaticPageRepository;
 import com.sg.cms.view.CmsView;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +26,8 @@ public class ContentController {
 
     @Autowired
     BlogBodyRepository blogBodyRepository;
+    @Autowired
+    StaticPageRepository staticPageRepository;
 
     @Autowired
     CmsView view;
@@ -49,4 +54,6 @@ public class ContentController {
         blogRepository.deleteById(id);
         return "redirect:/pendingApproval";
     }
+    
+
 }

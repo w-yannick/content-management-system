@@ -28,6 +28,18 @@ public class CmsView {
     public String displayBlogPage(){
         return "blog";
     }
+    public String displayStaticPage(){
+        return "staticPage";
+    }
+    public String displayEditStaticPage(){
+        return "editStaticPage";
+    }
+    public String displayStaticPageDetails(){
+        return "staticPageDetails";
+    }
+    public String displayCreateStaticPage(){
+        return "createStaticPage";
+    }
     public String displaySearchPage(){
         return "searchBlog";
     }

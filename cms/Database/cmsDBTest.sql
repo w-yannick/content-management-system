@@ -48,6 +48,13 @@ create table Contact(
     Message VARCHAR(255)
 );
 
+
+create Table staticPage(
+	id int primary key auto_increment,
+    Title varchar(50),
+    content mediumtext
+);
+
 INSERT INTO Blog(Title, Description, ExpiryDate,publishedDate,Approved) 
 VALUES 
 	("title 1 of the post","description 1","2022-07-26","2022-07-25",true),
@@ -87,3 +94,7 @@ VALUES
     (3,3),
     (5,3),
     (5,2);
+    
+INSERT INTO StaticPage(Title, Content) 
+VALUES 
+	("Disclaimer","<p>These are my personal thoughts...../p>");
