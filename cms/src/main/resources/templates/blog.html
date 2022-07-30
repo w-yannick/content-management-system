@@ -26,9 +26,15 @@
                  onerror="this.src='/images/placeholder.jpg';" alt="Card image cap">
         </div>
         <div id="blog" style ="margin-top: 3em;"></div>
-
-        <div>
-<!--            <a href="#" th:href="@{/deleteBlog(id=${blog.id})}">Delete</a>-->
+            
+        
+        <div class="row">
+            <div class="col-5">
+                <a href="#" th:href="@{/adminEditBlog(id=${blog.id})}" th:if="${role == 'ADMIN'}" >Edit</a>
+            </div>
+            <div class="col-5">
+                <a href="#" th:href="@{/deleteBlog(id=${blog.id})}" th:if="${role == 'ADMIN'}" >Delete</a>
+            </div>
         </div>
     </div>
 

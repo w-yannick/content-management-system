@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @RestController
@@ -34,6 +35,19 @@ public class CmsRestApiController {
     @GetMapping("/blogs")
     public List<Blog> getBlogs() {
         return blogRepository.findAll();
+    }
+    
+    @GetMapping("/searchBlogs")
+    public List<Blog> searchBlogs(String quickSearch, String dateMin, String dateMax ) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        //  LocalDate localDate = LocalDate.parse(date, formatter);
+        quickSearch = (quickSearch != null) ? '%'+quickSearch+'%' : "%";
+        LocalDateTime localDateMin = (dateMin != null) ? LocalDate.parse(dateMin, formatter).atStartOfDay() : blogRepository.findDateMin();
+        LocalDateTime localDateMax = (dateMax != null) ? LocalDate.parse(dateMax, formatter).plusDays(1).atStartOfDay() : blogRepository.findDateMax();
+       
+        return blogRepository.findBySearch( quickSearch,  quickSearch,  quickSearch, localDateMin, localDateMax);
+        
     }
    
 }

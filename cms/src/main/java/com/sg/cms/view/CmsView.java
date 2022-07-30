@@ -28,6 +28,9 @@ public class CmsView {
     public String displayBlogPage(){
         return "blog";
     }
+    public String displaySearchPage(){
+        return "searchBlog";
+    }
     public String displayCreatePage(){
         return "create";
     }

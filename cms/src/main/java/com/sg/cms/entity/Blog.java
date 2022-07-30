@@ -6,6 +6,7 @@
 package com.sg.cms.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -36,6 +37,9 @@ public class Blog {
     
     @Column
     LocalDate expiryDate;
+    
+    @Column
+    LocalDateTime publishedDate;
     
     @Column
     boolean approved;
@@ -81,6 +85,15 @@ public class Blog {
         this.expiryDate = expiryDate;
     }
 
+    public LocalDateTime getPublishedDate() {
+        return publishedDate;
+    }
+
+    public void setPublishedDate(LocalDateTime publishedDate) {
+        this.publishedDate = publishedDate;
+    }
+
+    
     public boolean isApproved() {
         return approved;
     }
@@ -102,12 +115,13 @@ public class Blog {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 37 * hash + this.id;
-        hash = 37 * hash + Objects.hashCode(this.title);
-        hash = 37 * hash + Objects.hashCode(this.description);
-        hash = 37 * hash + Objects.hashCode(this.expiryDate);
-        hash = 37 * hash + (this.approved ? 1 : 0);
-        hash = 37 * hash + Objects.hashCode(this.hashtags);
+        hash = 41 * hash + this.id;
+        hash = 41 * hash + Objects.hashCode(this.title);
+        hash = 41 * hash + Objects.hashCode(this.description);
+        hash = 41 * hash + Objects.hashCode(this.expiryDate);
+        hash = 41 * hash + Objects.hashCode(this.publishedDate);
+        hash = 41 * hash + (this.approved ? 1 : 0);
+        hash = 41 * hash + Objects.hashCode(this.hashtags);
         return hash;
     }
 
@@ -138,13 +152,15 @@ public class Blog {
         if (!Objects.equals(this.expiryDate, other.expiryDate)) {
             return false;
         }
+        if (!Objects.equals(this.publishedDate, other.publishedDate)) {
+            return false;
+        }
         if (!Objects.equals(this.hashtags, other.hashtags)) {
             return false;
         }
         return true;
     }
 
-    
-    
+   
     
 }

@@ -7,6 +7,7 @@ package com.sg.cms.repository;
 
 import com.sg.cms.entity.Blog;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -34,5 +35,22 @@ public interface BlogRepository extends JpaRepository<Blog, Integer> {
             "Order by id Desc LIMIT 20", nativeQuery = true)
     List<Blog> findByApproved(boolean approved);
     
+    @Query(value = "select b.* from Blog b " +
+                    "LEFT Join BlogHashtag as bh ON b.id = bh.BlogId " +
+                    "LEFT Join Hashtag as h ON h.id = bh. HashtagId " +
+                    "Where ( b.title like ? " +
+                    "OR b.description like ? " +
+                    "OR h.name like ? ) " +
+                    "AND b.publishedDate between ? AND ? " +
+                    "Group by b.id " +
+                    "Order by b.id desc", nativeQuery = true)
+    List<Blog> findBySearch(String title, String description, String hashtag, LocalDateTime dateMin, LocalDateTime dateMax);
     
+    
+    
+    @Query ( value = "SELECT MIN(publishedDate) FROM Blog", nativeQuery = true)
+    LocalDateTime findDateMin();
+    
+    @Query ( value = "SELECT MAX(publishedDate) FROM Blog", nativeQuery = true)
+    LocalDateTime findDateMax();
 }

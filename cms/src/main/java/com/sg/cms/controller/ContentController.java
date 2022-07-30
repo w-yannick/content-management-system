@@ -27,6 +27,13 @@ public class ContentController {
     @Autowired
     CmsView view;
 
+    @GetMapping("searchBlog")
+    public String searchBlog(HttpServletRequest request, Model model){
+        model.addAttribute("activePage", "search");
+        HomeController.assignRole(request, model);
+        return view.displaySearchPage();
+    }
+    
     @GetMapping("getBlog")
     public String getBlogPage(Integer id, HttpServletRequest request, Model model){
         Blog blog = blogRepository.getById(id);
