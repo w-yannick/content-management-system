@@ -9,7 +9,7 @@
 package com.sg.cms.repository;
 
 
-import com.sg.cms.entity.Blog;
+import com.sg.cms.entity.Hashtag;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.AfterAll;
@@ -31,14 +31,14 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 
-public class BlogRepositoryTest {
+public class HashtagRepositoryTest {
 
     
        
     @Autowired 
-    BlogRepository blogRepository;
+    HashtagRepository hashtagRepository;
      
-    public BlogRepositoryTest() {
+    public HashtagRepositoryTest() {
         
     }
     
@@ -61,63 +61,63 @@ public class BlogRepositoryTest {
     }
     
     @Test
-    public void testAddBlog(){
+    public void testAddHashtag(){
 
-        Blog blog = new Blog();
-        blog.setTitle("title");
-        blogRepository.save(blog);
+        Hashtag hashtag = new Hashtag();
+        hashtag.setName("name");
+        hashtagRepository.save(hashtag);
 
-        assertThat(blog).isNotNull();
-        assertThat(blog.getId()).isGreaterThan(0);
+        assertThat(hashtag).isNotNull();
+        assertThat(hashtag.getId()).isGreaterThan(0);
     }
     
     @Test
-    public void testAddAndGetBlog(){
+    public void testAddAndGetHashtag(){
 
-        Blog blog = new Blog();
-        blog.setTitle("title");
-        blogRepository.save(blog);
+        Hashtag hashtag = new Hashtag();
+        hashtag.setName("name");
+        hashtagRepository.save(hashtag);
         
         
-        Blog fromRepo = blogRepository.findById(blog.getId()).orElse(null);
-        assertEquals(blog,fromRepo);
-        assertEquals("title",fromRepo.getTitle());
+        Hashtag fromRepo = hashtagRepository.findById(hashtag.getId()).orElse(null);
+        assertEquals(hashtag,fromRepo);
+        assertEquals("name",fromRepo.getName());
         
     }
     
     @Test
     public void testAddAndDelete(){
-        Blog blog = new Blog();
-        blog.setTitle("title");
-        blogRepository.save(blog);
+        Hashtag hashtag = new Hashtag();
+        hashtag.setName("name");
+        hashtagRepository.save(hashtag);
         
-        Blog fromRepoBeforeDelete = blogRepository.findById(blog.getId()).orElse(null);
-        assertEquals(blog,fromRepoBeforeDelete);
+        Hashtag fromRepoBeforeDelete = hashtagRepository.findById(hashtag.getId()).orElse(null);
+        assertEquals(hashtag,fromRepoBeforeDelete);
         
-        blogRepository.delete(blog);
-        Blog fromRepoAfterDelete = blogRepository.findById(blog.getId()).orElse(null);
+        hashtagRepository.delete(hashtag);
+        Hashtag fromRepoAfterDelete = hashtagRepository.findById(hashtag.getId()).orElse(null);
         
         Assertions.assertNull(fromRepoAfterDelete);
     }
     
     @Test
     public void testAddAndUpdate(){
-        Blog blog = new Blog();
-        blog.setTitle("title1");
-        blogRepository.save(blog);
+        Hashtag hashtag = new Hashtag();
+        hashtag.setName("name1");
+        hashtagRepository.save(hashtag);
         
         //To update, first retrieve the element to update in order to get the entity in a managed state
-        Blog fromRepoBeforeUpdate = blogRepository.findById(blog.getId()).orElse(null);
-        assertEquals(blog,fromRepoBeforeUpdate);
+        Hashtag fromRepoBeforeUpdate = hashtagRepository.findById(hashtag.getId()).orElse(null);
+        assertEquals(hashtag,fromRepoBeforeUpdate);
         
         //then update the needed field, then use .save()
         //jpaRepository will automatically know which record to update with .save() thanks to the entity Manager
         //which is why its important to get the intity in a managed state.
-        fromRepoBeforeUpdate.setTitle("title2");
-        blogRepository.save(fromRepoBeforeUpdate);
-        Blog fromRepoAfterDelete = blogRepository.findById(blog.getId()).orElse(null);
+        fromRepoBeforeUpdate.setName("name2");
+        hashtagRepository.save(fromRepoBeforeUpdate);
+        Hashtag fromRepoAfterDelete = hashtagRepository.findById(hashtag.getId()).orElse(null);
         
-        assertEquals("title2", fromRepoAfterDelete.getTitle());
+        assertEquals("name2", fromRepoAfterDelete.getName());
     }
     
     

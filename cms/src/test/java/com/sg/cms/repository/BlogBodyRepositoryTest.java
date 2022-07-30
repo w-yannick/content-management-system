@@ -9,7 +9,7 @@
 package com.sg.cms.repository;
 
 
-import com.sg.cms.entity.Blog;
+import com.sg.cms.entity.BlogBody;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.AfterAll;
@@ -31,14 +31,14 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 
-public class BlogRepositoryTest {
+public class BlogBodyRepositoryTest {
 
     
        
     @Autowired 
-    BlogRepository blogRepository;
+    BlogBodyRepository blogBodyRepository;
      
-    public BlogRepositoryTest() {
+    public BlogBodyRepositoryTest() {
         
     }
     
@@ -61,63 +61,65 @@ public class BlogRepositoryTest {
     }
     
     @Test
-    public void testAddBlog(){
+    public void testAddBlogBody(){
 
-        Blog blog = new Blog();
-        blog.setTitle("title");
-        blogRepository.save(blog);
+        BlogBody blogBody = new BlogBody();
+        blogBody.setId(1);
+        blogBody.setBody("body");
+        blogBodyRepository.save(blogBody);
 
-        assertThat(blog).isNotNull();
-        assertThat(blog.getId()).isGreaterThan(0);
+        assertThat(blogBody).isNotNull();
+        assertThat(blogBody.getId()).isGreaterThan(0);
     }
     
     @Test
-    public void testAddAndGetBlog(){
+    public void testAddAndGetBlogBody(){
 
-        Blog blog = new Blog();
-        blog.setTitle("title");
-        blogRepository.save(blog);
+        BlogBody blogBody = new BlogBody();
+        blogBody.setBody("body");
+        blogBodyRepository.save(blogBody);
         
         
-        Blog fromRepo = blogRepository.findById(blog.getId()).orElse(null);
-        assertEquals(blog,fromRepo);
-        assertEquals("title",fromRepo.getTitle());
+        BlogBody fromRepo = blogBodyRepository.findById(blogBody.getId()).orElse(null);
+        assertEquals(blogBody,fromRepo);
+        assertEquals("body",fromRepo.getBody());
         
     }
     
     @Test
     public void testAddAndDelete(){
-        Blog blog = new Blog();
-        blog.setTitle("title");
-        blogRepository.save(blog);
+        BlogBody blogBody = new BlogBody();
+        blogBody.setId(1);
+        blogBody.setBody("body");
+        blogBodyRepository.save(blogBody);
         
-        Blog fromRepoBeforeDelete = blogRepository.findById(blog.getId()).orElse(null);
-        assertEquals(blog,fromRepoBeforeDelete);
+        BlogBody fromRepoBeforeDelete = blogBodyRepository.findById(blogBody.getId()).orElse(null);
+        assertEquals(blogBody,fromRepoBeforeDelete);
         
-        blogRepository.delete(blog);
-        Blog fromRepoAfterDelete = blogRepository.findById(blog.getId()).orElse(null);
+        blogBodyRepository.delete(blogBody);
+        BlogBody fromRepoAfterDelete = blogBodyRepository.findById(blogBody.getId()).orElse(null);
         
         Assertions.assertNull(fromRepoAfterDelete);
     }
     
     @Test
     public void testAddAndUpdate(){
-        Blog blog = new Blog();
-        blog.setTitle("title1");
-        blogRepository.save(blog);
+        BlogBody blogBody = new BlogBody();
+        blogBody.setBody("body1");
+        blogBodyRepository.save(blogBody);
         
         //To update, first retrieve the element to update in order to get the entity in a managed state
-        Blog fromRepoBeforeUpdate = blogRepository.findById(blog.getId()).orElse(null);
-        assertEquals(blog,fromRepoBeforeUpdate);
+        BlogBody fromRepoBeforeUpdate = blogBodyRepository.findById(blogBody.getId()).orElse(null);
+        assertEquals(blogBody,fromRepoBeforeUpdate);
         
         //then update the needed field, then use .save()
         //jpaRepository will automatically know which record to update with .save() thanks to the entity Manager
         //which is why its important to get the intity in a managed state.
-        fromRepoBeforeUpdate.setTitle("title2");
-        blogRepository.save(fromRepoBeforeUpdate);
-        Blog fromRepoAfterDelete = blogRepository.findById(blog.getId()).orElse(null);
+        fromRepoBeforeUpdate.setBody("body2");
+        blogBodyRepository.save(fromRepoBeforeUpdate);
+        BlogBody fromRepoAfterDelete = blogBodyRepository.findById(blogBody.getId()).orElse(null);
         
-        assertEquals("title2", fromRepoAfterDelete.getTitle());
+        assertEquals("body2", fromRepoAfterDelete.getBody());
     }
     
     

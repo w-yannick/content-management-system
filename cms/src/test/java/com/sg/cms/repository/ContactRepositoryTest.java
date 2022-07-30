@@ -9,7 +9,8 @@
 package com.sg.cms.repository;
 
 
-import com.sg.cms.entity.Blog;
+import com.sg.cms.entity.Contact;
+import com.sg.cms.entity.Contact;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.AfterAll;
@@ -31,14 +32,13 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 
-public class BlogRepositoryTest {
+public class ContactRepositoryTest {
 
     
-       
     @Autowired 
-    BlogRepository blogRepository;
+    ContactRepository contactRepository;
      
-    public BlogRepositoryTest() {
+    public ContactRepositoryTest() {
         
     }
     
@@ -61,63 +61,63 @@ public class BlogRepositoryTest {
     }
     
     @Test
-    public void testAddBlog(){
+    public void testAddContact(){
 
-        Blog blog = new Blog();
-        blog.setTitle("title");
-        blogRepository.save(blog);
+        Contact contact = new Contact();
+        contact.setMessage("message");
+        contactRepository.save(contact);
 
-        assertThat(blog).isNotNull();
-        assertThat(blog.getId()).isGreaterThan(0);
+        assertThat(contact).isNotNull();
+        assertThat(contact.getId()).isGreaterThan(0);
     }
     
     @Test
-    public void testAddAndGetBlog(){
+    public void testAddAndGetContact(){
 
-        Blog blog = new Blog();
-        blog.setTitle("title");
-        blogRepository.save(blog);
+        Contact contact = new Contact();
+        contact.setMessage("message");
+        contactRepository.save(contact);
         
         
-        Blog fromRepo = blogRepository.findById(blog.getId()).orElse(null);
-        assertEquals(blog,fromRepo);
-        assertEquals("title",fromRepo.getTitle());
+        Contact fromRepo = contactRepository.findById(contact.getId()).orElse(null);
+        assertEquals(contact,fromRepo);
+        assertEquals("message",fromRepo.getMessage());
         
     }
     
     @Test
     public void testAddAndDelete(){
-        Blog blog = new Blog();
-        blog.setTitle("title");
-        blogRepository.save(blog);
+        Contact contact = new Contact();
+        contact.setMessage("message");
+        contactRepository.save(contact);
         
-        Blog fromRepoBeforeDelete = blogRepository.findById(blog.getId()).orElse(null);
-        assertEquals(blog,fromRepoBeforeDelete);
+        Contact fromRepoBeforeDelete = contactRepository.findById(contact.getId()).orElse(null);
+        assertEquals(contact,fromRepoBeforeDelete);
         
-        blogRepository.delete(blog);
-        Blog fromRepoAfterDelete = blogRepository.findById(blog.getId()).orElse(null);
+        contactRepository.delete(contact);
+        Contact fromRepoAfterDelete = contactRepository.findById(contact.getId()).orElse(null);
         
         Assertions.assertNull(fromRepoAfterDelete);
     }
     
     @Test
     public void testAddAndUpdate(){
-        Blog blog = new Blog();
-        blog.setTitle("title1");
-        blogRepository.save(blog);
+        Contact contact = new Contact();
+        contact.setMessage("message1");
+        contactRepository.save(contact);
         
         //To update, first retrieve the element to update in order to get the entity in a managed state
-        Blog fromRepoBeforeUpdate = blogRepository.findById(blog.getId()).orElse(null);
-        assertEquals(blog,fromRepoBeforeUpdate);
+        Contact fromRepoBeforeUpdate = contactRepository.findById(contact.getId()).orElse(null);
+        assertEquals(contact,fromRepoBeforeUpdate);
         
         //then update the needed field, then use .save()
         //jpaRepository will automatically know which record to update with .save() thanks to the entity Manager
         //which is why its important to get the intity in a managed state.
-        fromRepoBeforeUpdate.setTitle("title2");
-        blogRepository.save(fromRepoBeforeUpdate);
-        Blog fromRepoAfterDelete = blogRepository.findById(blog.getId()).orElse(null);
+        fromRepoBeforeUpdate.setMessage("message2");
+        contactRepository.save(fromRepoBeforeUpdate);
+        Contact fromRepoAfterDelete = contactRepository.findById(contact.getId()).orElse(null);
         
-        assertEquals("title2", fromRepoAfterDelete.getTitle());
+        assertEquals("message2", fromRepoAfterDelete.getMessage());
     }
     
     

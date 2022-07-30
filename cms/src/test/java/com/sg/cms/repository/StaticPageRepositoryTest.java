@@ -9,7 +9,7 @@
 package com.sg.cms.repository;
 
 
-import com.sg.cms.entity.Blog;
+import com.sg.cms.entity.StaticPage;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.AfterAll;
@@ -31,14 +31,14 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 
-public class BlogRepositoryTest {
+public class StaticPageRepositoryTest {
 
     
        
     @Autowired 
-    BlogRepository blogRepository;
+    StaticPageRepository staticPageRepository;
      
-    public BlogRepositoryTest() {
+    public StaticPageRepositoryTest() {
         
     }
     
@@ -61,61 +61,61 @@ public class BlogRepositoryTest {
     }
     
     @Test
-    public void testAddBlog(){
+    public void testAddStaticPage(){
 
-        Blog blog = new Blog();
-        blog.setTitle("title");
-        blogRepository.save(blog);
+        StaticPage staticPage = new StaticPage();
+        staticPage.setTitle("title");
+        staticPageRepository.save(staticPage);
 
-        assertThat(blog).isNotNull();
-        assertThat(blog.getId()).isGreaterThan(0);
+        assertThat(staticPage).isNotNull();
+        assertThat(staticPage.getId()).isGreaterThan(0);
     }
     
     @Test
-    public void testAddAndGetBlog(){
+    public void testAddAndGetStaticPage(){
 
-        Blog blog = new Blog();
-        blog.setTitle("title");
-        blogRepository.save(blog);
+        StaticPage staticPage = new StaticPage();
+        staticPage.setTitle("title");
+        staticPageRepository.save(staticPage);
         
         
-        Blog fromRepo = blogRepository.findById(blog.getId()).orElse(null);
-        assertEquals(blog,fromRepo);
+        StaticPage fromRepo = staticPageRepository.findById(staticPage.getId()).orElse(null);
+        assertEquals(staticPage,fromRepo);
         assertEquals("title",fromRepo.getTitle());
         
     }
     
     @Test
     public void testAddAndDelete(){
-        Blog blog = new Blog();
-        blog.setTitle("title");
-        blogRepository.save(blog);
+        StaticPage staticPage = new StaticPage();
+        staticPage.setTitle("title");
+        staticPageRepository.save(staticPage);
         
-        Blog fromRepoBeforeDelete = blogRepository.findById(blog.getId()).orElse(null);
-        assertEquals(blog,fromRepoBeforeDelete);
+        StaticPage fromRepoBeforeDelete = staticPageRepository.findById(staticPage.getId()).orElse(null);
+        assertEquals(staticPage,fromRepoBeforeDelete);
         
-        blogRepository.delete(blog);
-        Blog fromRepoAfterDelete = blogRepository.findById(blog.getId()).orElse(null);
+        staticPageRepository.delete(staticPage);
+        StaticPage fromRepoAfterDelete = staticPageRepository.findById(staticPage.getId()).orElse(null);
         
         Assertions.assertNull(fromRepoAfterDelete);
     }
     
     @Test
     public void testAddAndUpdate(){
-        Blog blog = new Blog();
-        blog.setTitle("title1");
-        blogRepository.save(blog);
+        StaticPage staticPage = new StaticPage();
+        staticPage.setTitle("title1");
+        staticPageRepository.save(staticPage);
         
         //To update, first retrieve the element to update in order to get the entity in a managed state
-        Blog fromRepoBeforeUpdate = blogRepository.findById(blog.getId()).orElse(null);
-        assertEquals(blog,fromRepoBeforeUpdate);
+        StaticPage fromRepoBeforeUpdate = staticPageRepository.findById(staticPage.getId()).orElse(null);
+        assertEquals(staticPage,fromRepoBeforeUpdate);
         
         //then update the needed field, then use .save()
         //jpaRepository will automatically know which record to update with .save() thanks to the entity Manager
         //which is why its important to get the intity in a managed state.
         fromRepoBeforeUpdate.setTitle("title2");
-        blogRepository.save(fromRepoBeforeUpdate);
-        Blog fromRepoAfterDelete = blogRepository.findById(blog.getId()).orElse(null);
+        staticPageRepository.save(fromRepoBeforeUpdate);
+        StaticPage fromRepoAfterDelete = staticPageRepository.findById(staticPage.getId()).orElse(null);
         
         assertEquals("title2", fromRepoAfterDelete.getTitle());
     }
