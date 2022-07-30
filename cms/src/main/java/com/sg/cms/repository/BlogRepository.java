@@ -42,6 +42,7 @@ public interface BlogRepository extends JpaRepository<Blog, Integer> {
                     "OR b.description like ? " +
                     "OR h.name like ? ) " +
                     "AND b.publishedDate between ? AND ? " +
+                    "AND b.Approved = true " +
                     "Group by b.id " +
                     "Order by b.id desc", nativeQuery = true)
     List<Blog> findBySearch(String title, String description, String hashtag, LocalDateTime dateMin, LocalDateTime dateMax);
