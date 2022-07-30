@@ -33,7 +33,7 @@
                 <a href="#" th:href="@{/adminEditBlog(id=${blog.id})}" th:if="${role == 'ADMIN'}" >Edit</a>
             </div>
             <div class="col-5">
-                <a href="#" th:href="@{/deleteBlog(id=${blog.id})}" th:if="${role == 'ADMIN'}" >Delete</a>
+                <a href="#" th:href="@{/deleteBlog(id=${blog.id})}" onclick="return confirm('Are you sure you want to delete?')" th:if="${role == 'ADMIN'}" >Delete</a>
             </div>
         </div>
     </div>

@@ -5,7 +5,6 @@
  */
 package com.sg.cms.repository;
 
-import com.sg.cms.entity.Blog;
 import com.sg.cms.entity.BlogBody;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

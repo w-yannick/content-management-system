@@ -1,30 +1,18 @@
 package com.sg.cms.controller;
 
 
-import com.sg.cms.entity.Blog;
-import com.sg.cms.entity.BlogBody;
-import com.sg.cms.entity.Hashtag;
 import com.sg.cms.entity.StaticPage;
 import com.sg.cms.repository.BlogBodyRepository;
 import com.sg.cms.repository.BlogRepository;
 import com.sg.cms.repository.StaticPageRepository;
 import com.sg.cms.view.CmsView;
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.Part;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class StaticPageController {
