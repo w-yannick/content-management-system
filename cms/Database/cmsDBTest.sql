@@ -97,4 +97,4 @@ VALUES
     
 INSERT INTO StaticPage(Title, Content) 
 VALUES 
-	("Disclaimer","<p>These are my personal thoughts...../p>");
+	("Disclaimer","<p>These are my personal thoughts.....</p>");
