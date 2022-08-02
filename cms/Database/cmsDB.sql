@@ -5,8 +5,8 @@ use cmsDB;
 -- Blog
 create table Blog(
 	Id int primary key auto_increment,
-    Title varchar(50),
-    Description VARCHAR(50),
+    Title varchar(255),
+    Description VARCHAR(255),
     ExpiryDate Date,
     publishedDate datetime,
     Approved Boolean default false
@@ -51,7 +51,7 @@ create table Contact(
 
 create Table staticPage(
 	id int primary key auto_increment,
-    Title varchar(50),
+    Title varchar(255),
     content mediumtext
 );
 
@@ -89,11 +89,14 @@ VALUES
 	(1,1),
     (1,2),
     (1,3),
-    (2,2),
-    (3,1),
+    (2,1),
+    (3,2),
     (3,3),
+    (4,2),
     (5,3),
-    (5,2);
+    (5,2),
+    (6,1),
+    (7,3);
     
 INSERT INTO StaticPage(Title, Content) 
 VALUES 
