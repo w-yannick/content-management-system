@@ -21,8 +21,10 @@
 
     <div class="card-deck justify-content-center gap" >
         <div th:each="blog : ${blogs}">
-            <div class="card card-animation" style="width: 900px; height:500; flex: 0 1 auto;">
-                <img class="card-img-top" th:src="${'/images/blog-' + blog.id }"  onerror="this.src='/images/placeholder.jpg';" alt="Card image cap">
+            <div class="card card-animation" style="width: 722px; flex: 0 1 auto;">
+                <div style="width: 720px; height: 480px;">
+                    <img class="card-img-top" th:src="${'/images/blog-' + blog.id }" style=" width: 100%; height: 100%; object-fit: cover;" onerror="this.src='/images/placeholder.jpg';" alt="Card image cap">
+                </div>
                 <div class="card-body">
                     <h5 class="card-title" th:text="${blog.title}">Blog title</h5>
                     <p class="card-text" th:text="${blog.description}">Some quick example text to build on the card title and make up the bulk of the

@@ -52,8 +52,8 @@ public class CmsView {
     public String displayConfirmContactPage(){
         return "confirmContact";
     }
-    public String displayPendingApprovalPage(){
-        return "pendingApproval";
+    public String displayManagePage(){
+        return "manage";
     }
     
 }

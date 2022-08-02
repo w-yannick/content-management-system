@@ -27,8 +27,10 @@ $(document).ready(function(){
                 searchedBlogDiv = $('#searchedBlogs');
                 $.each(blogsArray, function(index, blog) {
 //                    var editButton = "<div><a href=\"/adminEditBlog?id="+  blog.id + "\" class=\"link\"> Edit </a></div>";
-                    var blogInfo = '<div class="card card-animation" style="margin-top:3em;width: 900px; height:500; flex: 0 1 auto;">';
-                    blogInfo += "<img src=\"/images/blog-" + blog.id + "\"  onerror=\"this.src=\'/images/placeholder.jpg\';\">";  
+                    var blogInfo = '<div class="card card-animation" style="margin-top:3em;width: 722px; height:480; flex: 0 1 auto;">';
+                    blogInfo += '<div style="width: 720px; height: 480px;">';
+                    blogInfo += "<img src=\"/images/blog-" + blog.id + "\" style=\" width: 100%; height: 100%; object-fit: cover;\" onerror=\"this.src=\'/images/placeholder.jpg\';\">";  
+                    blogInfo += "</div>";
                     blogInfo += "<div class=\"card-body\">";
                     
                     blogInfo += "<h5 class=\"card-title\">"+blog.title+"</h5>";  

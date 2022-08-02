@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .authorizeRequests()
                     //    "page To be protected"    "ROLE"   
                     .antMatchers("/create").hasRole("MANAGER")
-                    .antMatchers("/pendingApproval").hasRole("ADMIN")
+                    .antMatchers("/manage").hasRole("ADMIN")
                     .antMatchers("/", "/home").permitAll()
                     .antMatchers("/css/**", "/js/**", "/fonts/**").permitAll()
 //                    .anyRequest().hasRole("MANAGER")

@@ -105,15 +105,15 @@ public class CreateController {
         return hashTags;
     }
     
-    @RequestMapping(value="/pendingApproval", method=RequestMethod.GET)
+    @RequestMapping(value="/manage", method=RequestMethod.GET)
     public String displayApprovalPage(HttpServletRequest request, Model model) {
         List<Blog> nonApprovedBlogs = blogRepository.findByApproved(false);
         List<Blog> ApprovedBlogs = blogRepository.findByApproved(true);
-        model.addAttribute("activePage", "pendingApproval");
+        model.addAttribute("activePage", "manage");
         model.addAttribute("nonApprovedBlogs", nonApprovedBlogs);
         model.addAttribute("approvedBlogs", ApprovedBlogs);
         HomeController.assignRole(request, model);
-        return view.displayPendingApprovalPage();
+        return view.displayManagePage();
     }
     
     @RequestMapping(value="/adminEditBlog", method=RequestMethod.GET)
@@ -173,7 +173,7 @@ public class CreateController {
            }
        }catch(IOException | ServletException e){
        }
-        return "redirect:/pendingApproval";
+        return "redirect:/manage";
     }
     
     
