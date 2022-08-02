@@ -32,6 +32,8 @@ box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30p
     border-radius:5px;
     background: 
     url(https://images.unsplash.com/photo-1475113548554-5a36f1f523d6?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=1050&ixid=MnwxfDB8MXxyYW5kb218MHx8bmF0dXJlfHx8fHx8MTY1OTQ2MjM3Mw&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1600);
+    /*width: 100%; height: 100%; object-fit: cover;*/
+     background-size: cover;
     font-weight: 800;    
     background-repeat: no-repeat;
     background-attachment: fixed;
