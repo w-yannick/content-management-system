@@ -14,6 +14,8 @@
 <body>
 <!-- Main Body of Page -->
 <div th:replace="~{fragments/header :: header}"></div>
+<div th:replace="~{fragments/jumbotron :: jumbotron}"> </div>
+
 <div class="container">
     <div class="text-center m-4">
         <h1>Blog Site</h1>
@@ -44,9 +46,10 @@
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
         crossorigin="anonymous"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
         integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
@@ -55,6 +58,7 @@
         crossorigin="anonymous"></script>
 <input type="hidden" id="role" name="role" th:value="${role}"/>
 <script type="text/javascript" th:src="@{/js/addNavbarItems.js}"></script>
+<script type="text/javascript" th:src="@{/js/jumbotronRotateSpecials.js}"></script>
 
 </body>
 </html>;
