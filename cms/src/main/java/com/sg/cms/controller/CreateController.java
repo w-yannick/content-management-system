@@ -87,7 +87,9 @@ public class CreateController {
         try{
            Part image = request.getPart("file"); // Retrieves <input type="file" name="file">
            String fileName = image.getSubmittedFileName();
-           saveImage(image, fileName, blog.getId());
+           if(!fileName.equals("")){
+                saveImage(image, fileName, blog.getId());
+           }
        }catch(IOException | ServletException e){
        }
         
