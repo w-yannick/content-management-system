@@ -58,12 +58,12 @@ create Table staticPage(
 INSERT INTO Blog(Title, Description, ExpiryDate,publishedDate,Approved) 
 VALUES 
 	("title 1 of the post","description 1","2022-07-26","2022-07-25",true),
-    ("title 2 of the post","description 2","2022-08-10","2022-07-26",true),
-    ("title 3 of the post","description 3","2022-08-10","2022-07-27",true),
-    ("title 4 of the post","description 4","2022-08-10","2022-07-28",true),
-    ("title 5 of the post","description 5","2022-08-10","2022-07-29",false),
-    ("title 6 of the post","description 6","2022-08-10","2022-07-29",false),
-    ("title 7 of the post","description 7","2022-08-10","2022-07-29",false);
+    ("title 2 of the post","description 2",null,"2022-07-26",true),
+    ("title 3 of the post","description 3",null,"2022-07-27",true),
+    ("title 4 of the post","description 4",null,"2022-07-28",true),
+    ("title 5 of the post","description 5",null,"2022-07-29",false),
+    ("title 6 of the post","description 6",null,"2022-07-29",false),
+    ("title 7 of the post","description 7",null,"2022-07-29",false);
     
 INSERT INTO BlogBody(Id, Body) 
 VALUES 
