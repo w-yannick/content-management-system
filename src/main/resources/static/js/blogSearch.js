@@ -6,7 +6,7 @@ $(document).ready(function(){
         var dateMin = $("#date-min").val();
         var dateMax = $("#date-max").val();
         console.log(role);
-        var url = "http://localhost:8080/api/searchBlogs?";
+        var url = "https://my-cms-project-y.herokuapp.com/api/searchBlogs?";
      
         url +=(quickSearch !== '') ? "quickSearch="+quickSearch : '';
         url +=(dateMin !== '') ? "&dateMin="+dateMin : '';
